@@ -15,7 +15,7 @@ class SiteMap {
      */
     public $maxCountUrl = 25000;
     private $_pathFiles;     //папка с файлами sitemap
-    private $_urlPath;       //абсолютный урл сайта
+    private $_urlPath;       //абсолютный урл до папки с xml
     private $_fileIndexPath; //путь к индексному файлу
     private $_f;             //указатель на открытый файл для записи
     private $_ifile = 0;     //счетчи файлов
@@ -72,7 +72,7 @@ class SiteMap {
 
         for ($t = 0; $t < $this->_ifile; $t++) {
             fwrite($f, '<sitemap>' . $this->ln);
-            fwrite($f, '<loc>' . $this->_urlPath . 'item' . $t . '.xml</loc>' . $this->ln);
+            fwrite($f, '<loc>' . $this->_urlPath . '/item' . $t . '.xml</loc>' . $this->ln);
             fwrite($f, '</sitemap>' . $this->ln);
         }
 
@@ -81,7 +81,7 @@ class SiteMap {
     }
 
     private function getCurrentFile() {
-        return $this->_pathFiles . 'item' . $this->_ifile . '.xml';
+        return $this->_pathFiles . '/item' . $this->_ifile . '.xml';
     }
 
     private function start() {
